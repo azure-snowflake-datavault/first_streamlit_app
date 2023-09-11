@@ -88,7 +88,7 @@ def run_query6(query):
         cur.execute(query)
         return cur.fetchall()
 max_transaction_id_query = "Select max(Transaction_Id) Account_id from dbo.Account_transaction"
-max_transaction_id_row = run_query6(max_transaction_id)
+max_transaction_id_row = run_query6(max_transaction_id_query)
 max_transaction_id_df = pandas.DataFrame((tuple(t) for t in max_transaction_id_row)) 
 max_transaction_id = max_transaction_id_df[0][0]
 
