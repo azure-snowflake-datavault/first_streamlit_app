@@ -1,20 +1,20 @@
-import streamlit
+import streamlit as st
 
 
-streamlit.title('Bank')
+st.title('Bank')
 
 
-streamlit.text('Account Name')
-streamlit.text('Account Balance')
-streamlit.text('Rrfresh Balance')
+st.text('Account Name')
+st.text('Account Balance')
+st.text('Rrfresh Balance')
 
 
 
-streamlit.text('Send money')
-streamlit.text('Recipient')
+st.text('Send money')
+st.text('Recipient')
 
-streamlit.text('Request money')
-streamlit.text('Requestee')
+st.text('Request money')
+st.text('Requestee')
 
 
 conn = st.experimental_connection('streamlit_bank', type='sql')
