@@ -39,6 +39,9 @@ def init_connection():
 # server_1433 = "streamlitbank.database.windows.net,1433"
 # server_tcp_1433 = "tcp:streamlitbank.database.windows.net,1433"
 
+
+
+
 conn = init_connection()
 
 # Perform query.
@@ -49,7 +52,7 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
-rows = run_query("SELECT * from mytable;")
+rows = run_query("Select * from dbo.Customer")
 
 # Print results.
 for row in rows:
