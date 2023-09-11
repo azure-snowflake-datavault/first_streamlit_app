@@ -3,6 +3,8 @@ import pyodbc
 import pandas
 
 
+st.title("BANK")
+
 # Initialize connection.
 # Uses st.cache_resource to only run once.
 @st.cache_resource
