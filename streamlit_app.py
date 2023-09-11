@@ -91,13 +91,13 @@ max_transaction_id_query = "Select max(Transaction_Id) Account_id from dbo.Accou
 max_transaction_id_row = run_query6(max_transaction_id_query)
 max_transaction_id_df = pandas.DataFrame((tuple(t) for t in max_transaction_id_row)) 
 max_transaction_id = max_transaction_id_df[0][0]
-
+next_max_transaction_id = int(max_transaction_id) + 1
 
 st.write("Send money")
 debit_account = st.selectbox('Debit Account?', account_ids_df[0] )
 credit_account = st.selectbox('Debit Account?', all_account_ids_df[0] )
 amount = st.text_input('Amount to Send', 100 )
-transaction_query = "Insert into dbo.Account_transaction values (" + str(max_transaction_id + 1) + "," + str(debit_account) + "," + str(credit_account) + ",'Debit',SYSDATETIME(),SYSDATETIME())"
+transaction_query = "Insert into dbo.Account_transaction values (" + str(next_max_transaction_id) + "," + str(debit_account) + "," + str(credit_account) + ",'Debit',SYSDATETIME(),SYSDATETIME())"
 
 
 @st.cache_resource
