@@ -46,17 +46,22 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
-rows = run_query("Select * from dbo.Customer")
-df = pandas.DataFrame((tuple(t) for t in rows)) 
+rows = run_query("Select cust_id from dbo.Customer")
+cust_ids_df = pandas.DataFrame((tuple(t) for t in rows)) 
 
-st.text(type(df[0]))
+option = st.selectbox('Get Account Details for?', cust_ids_df[0] )
+st.write('Customer details for:', option)
 
-st.dataframe(df)
 
-
-option = st.selectbox('Get Account Details for?', df[0] )
-
-# st.write('You selected:', option)
-
+@st.cache_data(ttl=600)
+def run_query(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        return cur.fetchall()
+Cust_query = "Select * from dbo.Customer where Cust_id = " + option
+st.write(Cust_query)
+#rows = run_query(Cust_query)
+#df = pandas.DataFrame((tuple(t) for t in rows)) 
+#st.dataframe(df)
 
 
