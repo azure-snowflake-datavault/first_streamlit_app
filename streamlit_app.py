@@ -93,12 +93,20 @@ max_transaction_id_df = pandas.DataFrame((tuple(t) for t in max_transaction_id_r
 max_transaction_id = max_transaction_id_df[0][0]
 
 
-if st.button("Send money"):
-    debit_account = st.selectbox('Debit Account?', account_ids_df[0] )
-    credit_account = st.selectbox('Debit Account?', all_account_ids_df[0] )
-    amount = st.text_input('Amount to Send', 100 )
-    transaction_query = "Insert into dbo.Account_transaction values (" + str(max_transaction_id) + "," + str(debit_account) + "," + str(credit_account) + ",'Debit',SYSDATETIME(),SYSDATETIME())"
-    st.text(transaction_query)
-    
-    
+st.Write("Send money"):
+debit_account = st.selectbox('Debit Account?', account_ids_df[0] )
+credit_account = st.selectbox('Debit Account?', all_account_ids_df[0] )
+amount = st.text_input('Amount to Send', 100 )
+transaction_query = "Insert into dbo.Account_transaction values (" + str(max_transaction_id) + "," + str(debit_account) + "," + str(credit_account) + ",'Debit',SYSDATETIME(),SYSDATETIME())"
+
+
+@st.cache_resource
+def run_query7(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        return cur.fetchall()
+
+
+if st.button("Send money"):   
+    run_query7(transaction_query)
     
