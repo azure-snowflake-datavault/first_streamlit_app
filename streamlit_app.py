@@ -48,9 +48,7 @@ def run_query(query):
 
 rows = run_query("Select * from dbo.Customer")
 
-# Print results.
-for row in rows:
-    st.write(f"{row[0]} has a :{row[1]}:")
+type(rows)
 
 
 st.dataframe(rows)
