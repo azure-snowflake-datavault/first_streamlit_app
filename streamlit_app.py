@@ -50,7 +50,7 @@ rows = run_query("Select * from dbo.Customer")
 df = pandas.DataFrame((tuple(t) for t in rows)) 
 
 
-st.df
+st.dataframe(df)
 
 
 
