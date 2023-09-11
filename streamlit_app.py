@@ -1,6 +1,7 @@
 import streamlit as st
 import sqlalchemy
 import pyodbc
+import pandas
 
 st.title('Bank')
 st.text('Account Name')
@@ -11,7 +12,6 @@ st.text('Recipient')
 st.text('Request money')
 st.text('Requestee')
 
-st.text('Test 6')
 
 
 # conn = st.experimental_connection('streamlit_bank', type='sql')
