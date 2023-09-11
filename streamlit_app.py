@@ -1,5 +1,5 @@
 import streamlit as st
-import sqlalchemy
+#import sqlalchemy
 import pyodbc
 
 st.title('Bank')
