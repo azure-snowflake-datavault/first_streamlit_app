@@ -15,7 +15,7 @@ st.text('Test 5')
 
 
 conn = st.experimental_connection('streamlit_bank', type='sql')
-Customer = conn.query('select * from dbo.Customer')
-st.dataframe(Customer)
+# Customer = conn.query('select * from dbo.Customer')
+# st.dataframe(Customer)
 
 
