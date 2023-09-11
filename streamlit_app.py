@@ -54,9 +54,7 @@ st.text(type(df[0]))
 st.dataframe(df)
 
 
-#option = st.selectbox(
-#    'Get Account Details for?',
-#    ('Email', 'Home phone', 'Mobile phone'))
+option = st.selectbox('Get Account Details for?', df[0] )
 
 # st.write('You selected:', option)
 
