@@ -48,7 +48,7 @@ def run_query(query):
 
 rows = run_query("Select * from dbo.Customer")
 
-print(type(rows))
+st.text(type(rows))
 
 
 st.dataframe(rows)
