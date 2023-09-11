@@ -97,7 +97,7 @@ st.write("Send money")
 debit_account = st.selectbox('Debit Account?', account_ids_df[0] )
 credit_account = st.selectbox('Debit Account?', all_account_ids_df[0] )
 amount = st.text_input('Amount to Send', 100 )
-transaction_query = "Insert into dbo.Account_transaction values (" + str(max_transaction_id) + "," + str(debit_account) + "," + str(credit_account) + ",'Debit',SYSDATETIME(),SYSDATETIME())"
+transaction_query = "Insert into dbo.Account_transaction values (" + str(max_transaction_id + 1) + "," + str(debit_account) + "," + str(credit_account) + ",'Debit',SYSDATETIME(),SYSDATETIME())"
 
 
 @st.cache_resource
