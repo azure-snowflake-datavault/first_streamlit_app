@@ -93,7 +93,7 @@ max_transaction_id_df = pandas.DataFrame((tuple(t) for t in max_transaction_id_r
 max_transaction_id = max_transaction_id_df[0][0]
 
 
-st.Write("Send money"):
+st.Write("Send money")
 debit_account = st.selectbox('Debit Account?', account_ids_df[0] )
 credit_account = st.selectbox('Debit Account?', all_account_ids_df[0] )
 amount = st.text_input('Amount to Send', 100 )
