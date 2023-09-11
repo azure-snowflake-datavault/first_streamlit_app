@@ -41,7 +41,7 @@ cust_details = run_query(Cust_query)
 df_cust = pandas.DataFrame((tuple(t) for t in cust_details)) 
 st.dataframe(df_cust)
 
-account_relation_query = "Select Account_id from dbo.Account_Customer_Relation where Cust_id = " + str(option)
+account_relation_query = "Select Account_id from dbo.Account_Customer_Relation where Cust_id = " + str(option_cust)
 account_rows = run_query("account_relation_query")
 account_ids_df = pandas.DataFrame((tuple(t) for t in account_rows)) 
 option_account = st.selectbox('Get Account Details for?', account_ids_df[0] )
