@@ -49,8 +49,16 @@ def run_query(query):
 rows = run_query("Select * from dbo.Customer")
 df = pandas.DataFrame((tuple(t) for t in rows)) 
 
+st.text(type(df[0]))
 
 st.dataframe(df)
+
+
+#option = st.selectbox(
+#    'Get Account Details for?',
+#    ('Email', 'Home phone', 'Mobile phone'))
+
+# st.write('You selected:', option)
 
 
 
