@@ -56,7 +56,6 @@ def run_query3(query):
         cur.execute(query)
         return cur.fetchall()
 account_relation_query = "Select Account_id from dbo.Account_Customer_Relation where Cust_id = " + str(option_cust)
-st.text(account_relation_query)
 account_rows = run_query3(account_relation_query)
 account_ids_df = pandas.DataFrame((tuple(t) for t in account_rows)) 
 option_account = st.selectbox('Get Account Details for?', account_ids_df[0] )
@@ -73,3 +72,33 @@ cust_details = run_query4(Account_query)
 df_account = pandas.DataFrame((tuple(t) for t in cust_details)) 
 st.dataframe(df_account)
 
+@st.cache_resource
+def run_query5(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        return cur.fetchall()
+all_accounts = "Select Account_id from dbo.Account"
+all_account_rows = run_query5(all_accounts)
+all_account_ids_df = pandas.DataFrame((tuple(t) for t in all_account_rows)) 
+
+
+@st.cache_resource
+def run_query6(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        return cur.fetchall()
+max_transaction_id_query = "Select max(Transaction_Id) Account_id from dbo.Account_transaction"
+max_transaction_id_row = run_query6(max_transaction_id)
+max_transaction_id_df = pandas.DataFrame((tuple(t) for t in max_transaction_id_row)) 
+max_transaction_id = max_transaction_id_df[0][0]
+
+
+if st.button("Send money"):
+    debit_account = st.selectbox('Debit Account?', account_ids_df[0] )
+    credit_account = st.selectbox('Debit Account?', all_account_ids_df[0] )
+    amount = st.text_input('Amount to Send', 100 )
+    transaction_query = "Insert into dbo.Account_transaction values (" + str(max_transaction_id) + "," + str(debit_account) + "," + str(credit_account) + ",'Debit',SYSDATETIME(),SYSDATETIME())"
+    st.text(transaction_query)
+    
+    
+    
