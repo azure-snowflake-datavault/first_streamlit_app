@@ -1,22 +1,6 @@
 import streamlit as st
-import sqlalchemy
 import pyodbc
 import pandas
-
-st.title('Bank')
-st.text('Account Name')
-st.text('Account Balance')
-st.text('Rrfresh Balance')
-st.text('Send money')
-st.text('Recipient')
-st.text('Request money')
-st.text('Requestee')
-
-
-
-# conn = st.experimental_connection('streamlit_bank', type='sql')
-# Customer = conn.query('select * from dbo.Customer')
-# st.dataframe(Customer)
 
 
 # Initialize connection.
@@ -46,22 +30,26 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
-rows = run_query("Select cust_id from dbo.Customer")
-cust_ids_df = pandas.DataFrame((tuple(t) for t in rows)) 
+cust_rows = run_query("Select cust_id from dbo.Customer")
+cust_ids_df = pandas.DataFrame((tuple(t) for t in cust_rows)) 
+option_cust = st.selectbox('Get Customer Details for?', cust_ids_df[0] )
+st.write('Customer details for:', option_cust)
 
-option = st.selectbox('Get Account Details for?', cust_ids_df[0] )
-st.write('Customer details for:', option)
-
-
-@st.cache_data(ttl=600)
-def run_query(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        return cur.fetchall()
 Cust_query = "Select * from dbo.Customer where Cust_id = " + str(option)
 st.write(Cust_query)
-rows = run_query(Cust_query)
-df = pandas.DataFrame((tuple(t) for t in rows)) 
-st.dataframe(df)
+cust_details = run_query(Cust_query)
+df_cust = pandas.DataFrame((tuple(t) for t in cust_details)) 
+st.dataframe(df_cust)
 
+account_relation_query = "Select Account_id from dbo.Customer where Cust_id = " + str(option)
+account_rows = run_query("account_relation_query")
+account_ids_df = pandas.DataFrame((tuple(t) for t in account_rows)) 
+option_account = st.selectbox('Get Account Details for?', account_ids_df[0] )
+st.write('Customer details for:', option_account)
+
+Account_query = "Select * from dbo.Customer where Cust_id = " + str(option)
+st.write(Account_query)
+cust_details = run_query(Account_query)
+df_account = pandas.DataFrame((tuple(t) for t in cust_details)) 
+st.dataframe(df_account)
 
