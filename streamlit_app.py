@@ -54,7 +54,7 @@ def run_query3(query):
         cur.execute(query)
         return cur.fetchall()
 account_relation_query = "Select Account_id from dbo.Account_Customer_Relation where Cust_id = " + str(option_cust)
-account_rows = run_query3("account_relation_query")
+account_rows = run_query3(account_relation_query)
 account_ids_df = pandas.DataFrame((tuple(t) for t in account_rows)) 
 option_account = st.selectbox('Get Account Details for?', account_ids_df[0] )
 st.write('Customer details for:', option_account)
