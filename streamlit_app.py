@@ -34,12 +34,6 @@ def init_connection():
         + st.secrets["password"]
     )
 
-# server = "streamlitbank.database.windows.net,1433"
-# server_tcp = "tcp:streamlitbank.database.windows.net"
-# server_1433 = "streamlitbank.database.windows.net,1433"
-# server_tcp_1433 = "tcp:streamlitbank.database.windows.net,1433"
-
-
 
 
 conn = init_connection()
@@ -57,5 +51,8 @@ rows = run_query("Select * from dbo.Customer")
 # Print results.
 for row in rows:
     st.write(f"{row[0]} has a :{row[1]}:")
+
+
+st.dataframe(rows)
 
 
