@@ -58,7 +58,7 @@ def run_query(query):
     with conn.cursor() as cur:
         cur.execute(query)
         return cur.fetchall()
-Cust_query = "Select * from dbo.Customer where Cust_id = " + option
+Cust_query = "Select * from dbo.Customer where Cust_id = " + str(option)
 st.write(Cust_query)
 #rows = run_query(Cust_query)
 #df = pandas.DataFrame((tuple(t) for t in rows)) 
